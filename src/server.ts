@@ -1,6 +1,7 @@
 import fastify from "fastify"
 
 import { env } from "./shared/env/environments"
+import { appRoutes } from "./shared/routes/app.routes"
 
 const app = fastify()
 
@@ -8,6 +9,8 @@ const app = fastify()
 // app.get("/hello", () => {
 //   return "Bem Vindo"
 // })
+
+app.register(appRoutes)
 
 app
   .listen({
