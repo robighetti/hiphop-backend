@@ -13,6 +13,9 @@ const envSchema = z.object({
   DB_USER: z.string(),
   DB_PASS: z.string(),
   DB_DATABASE: z.string(),
+  JWT_SECRET: z.string(),
+  JWT_EXPIRES_IN: z.string().default("1h"),
+  SALT_RESULT: z.coerce.number().default(10),
 })
 
 const _env = envSchema.safeParse(process.env)

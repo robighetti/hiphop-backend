@@ -3,6 +3,7 @@ export interface UserCreateResponseDto {
   name: string
   email: string
   status: boolean
+  password?: string
   createdAt: Date
   updatedAt: Date
 }
