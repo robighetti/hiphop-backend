@@ -4,4 +4,5 @@ import type { UserCreateResponseDto } from "../dtos/user/user-create-response.dt
 export interface UsersRepositoryInterface {
   create(data: UserCreateRequestDto): Promise<void>
   getUserByEmail(email: string): Promise<UserCreateResponseDto | null>
+  createToken(id_user: string, token: string): Promise<void>
 }

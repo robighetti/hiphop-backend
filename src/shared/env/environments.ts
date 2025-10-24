@@ -16,6 +16,13 @@ const envSchema = z.object({
   JWT_SECRET: z.string(),
   JWT_EXPIRES_IN: z.string().default("1h"),
   SALT_RESULT: z.coerce.number().default(10),
+  MAIL_HOST: z.string(),
+  MAIL_PORT: z.coerce.number().default(587),
+  MAIL_SECURITY: z.coerce.boolean().default(false),
+  MAIL_USER: z.string(),
+  MAIL_PASS: z.string(),
+  MAIL_FROM: z.string(),
+  FRONTEND_URL: z.string(),
 })
 
 const _env = envSchema.safeParse(process.env)
