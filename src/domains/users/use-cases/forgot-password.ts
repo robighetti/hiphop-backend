@@ -24,7 +24,7 @@ export class ForgotPassword {
       template: `
         <p>Olá, Rodrigo</p>
         <p>Clique no link abaixo para recuperar sua senha:</p>
-        <a href="${env.FRONTEND_URL}/reset-password?token=${1234}">Recuperar senha</a>
+        <a href="${env.FRONTEND_URL}/reset-password/${token}">Recuperar senha</a>
       `,
     })
 
