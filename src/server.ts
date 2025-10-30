@@ -1,14 +1,15 @@
 import fastify from "fastify"
 
+import fastifyJwt from "@fastify/jwt"
+
 import { env } from "./shared/env/environments"
 import { appRoutes } from "./shared/routes/app.routes"
 
 const app = fastify()
 
-// Exemplo de uma rota GET
-// app.get("/hello", () => {
-//   return "Bem Vindo"
-// })
+app.register(fastifyJwt, {
+  secret: env.JWT_SECRET,
+})
 
 app.register(appRoutes)
 
