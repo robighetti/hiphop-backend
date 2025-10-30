@@ -2,6 +2,7 @@ import { env } from "process"
 import { MailProvider } from "../../../shared/providers/email/nodemailer/nodemailerMailProvider"
 import type { UsersRepositoryInterface } from "../repositories/users.interface"
 import { randomUUID } from "crypto"
+import { AppError } from "../../../shared/error/AppError"
 
 export class ForgotPassword {
   constructor(private usersRepository: UsersRepositoryInterface) {}
@@ -9,7 +10,7 @@ export class ForgotPassword {
   async execute(email: string) {
     const user = await this.usersRepository.getUserByEmail(email)
     if (!user) {
-      throw new Error("User not found")
+      throw new AppError("User not found")
     }
 
     const token = randomUUID()

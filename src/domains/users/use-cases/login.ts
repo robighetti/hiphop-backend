@@ -4,6 +4,7 @@ import { compareHash } from "../../../shared/utils/encrypt"
 import type { AuthRequestDto } from "../dtos/auth/auth.request"
 import type { UsersRepositoryInterface } from "../repositories/users.interface"
 import { env } from "../../../shared/env/environments"
+import { AppError } from "../../../shared/error/AppError"
 
 export class Login {
   constructor(private usersRepository: UsersRepositoryInterface) {}
@@ -12,13 +13,13 @@ export class Login {
     const user = await this.usersRepository.getUserByEmail(data.email)
 
     if (!user || !user.password) {
-      throw new Error("User not found")
+      throw new AppError("User not found", 404)
     }
 
     const passwordMatch = await compareHash(data.password, user.password)
 
     if (!passwordMatch) {
-      throw new Error("Invalid credentials")
+      throw new AppError("Invalid credentials", 401)
     }
 
     const token = jwt.sign({ id: user.id }, env.JWT_SECRET, {
